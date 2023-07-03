@@ -1,0 +1,25 @@
+{
+	"name": "s3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "marketdata",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "harsha_dataset"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "cdata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
