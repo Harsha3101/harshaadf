@@ -38,10 +38,6 @@
 					"name": "teacherAdressDim"
 				},
 				{
-					"dataset": {
-						"referenceName": "AzureSqlTablestudent",
-						"type": "DatasetReference"
-					},
 					"name": "studentDim"
 				},
 				{
@@ -103,21 +99,9 @@
 				"     errorHandlingOption: 'stopOnFirstError') ~> teacherAdressDim",
 				"student sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     input(",
-				"          student_id as integer,",
-				"          name as string,",
-				"          branch as string,",
-				"          watermark as date,",
-				"          teacher_id as integer",
-				"     ),",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> studentDim",
+				"     format: 'table') ~> studentDim",
 				"studentAdress sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
