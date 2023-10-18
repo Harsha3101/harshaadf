@@ -23,6 +23,9 @@
 		"AzureDatabricks1_accessToken": {
 			"value": ""
 		},
+		"AzureDatabricks2_accessToken": {
+			"value": ""
+		},
 		"AzureSqlDatabase_connectionString": {
 			"value": ""
 		},
@@ -50,9 +53,6 @@
 		"onprim_connectionString": {
 			"value": ""
 		},
-		"AzureDatabricks2_accessToken": {
-			"value": ""
-		},
 		"AmazonS31_properties_typeProperties_accessKeyId": {
 			"value": "AKIA5GTBAKI3MAYB3QGN"
 		},
@@ -68,11 +68,11 @@
 		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
 			"value": "1011-125005-am3gm8fa"
 		},
-		"marketdata_properties_typeProperties_url": {
-			"value": "https://mdata11.dfs.core.windows.net/"
-		},
 		"AzureDatabricks2_properties_typeProperties_existingClusterId": {
 			"value": "1011-125005-am3gm8fa"
+		},
+		"marketdata_properties_typeProperties_url": {
+			"value": "https://mdata11.dfs.core.windows.net/"
 		}
 	}
 }

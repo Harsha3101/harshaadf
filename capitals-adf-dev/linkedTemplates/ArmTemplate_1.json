@@ -41,6 +41,54 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/config_full_load')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabaselokesh",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "lokesh_ds"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "source_db_name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "source_schema",
+						"type": "nvarchar"
+					},
+					{
+						"name": "source_tables",
+						"type": "nvarchar"
+					},
+					{
+						"name": "destination_container",
+						"type": "nvarchar"
+					},
+					{
+						"name": "destination_folder",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "on_prim_full"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/market_data')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -427,46 +475,6 @@
 					"referenceName": "integrationRuntime1lokesh",
 					"type": "IntegrationRuntimeReference"
 				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Notebook1",
-						"type": "DatabricksNotebook",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": "/Users/sksantosh1911@gmail.com/harsha_notebook",
-							"baseParameters": {
-								"date": "harsha"
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "AzureDatabricks2",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"folder": {
-					"name": "harsha_pipelines"
-				},
-				"annotations": []
 			},
 			"dependsOn": []
 		},

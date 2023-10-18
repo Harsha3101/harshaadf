@@ -31,6 +31,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks1'"
 		},
+		"AzureDatabricks2_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks2'"
+		},
 		"AzureSqlDatabase_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase'"
@@ -67,10 +71,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'onprim'"
 		},
-		"AzureDatabricks2_accessToken": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks2'"
-		},
 		"AmazonS31_properties_typeProperties_accessKeyId": {
 			"type": "string",
 			"defaultValue": "AKIA5GTBAKI3MAYB3QGN"
@@ -91,13 +91,13 @@
 			"type": "string",
 			"defaultValue": "1011-125005-am3gm8fa"
 		},
-		"marketdata_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://mdata11.dfs.core.windows.net/"
-		},
 		"AzureDatabricks2_properties_typeProperties_existingClusterId": {
 			"type": "string",
 			"defaultValue": "1011-125005-am3gm8fa"
+		},
+		"marketdata_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://mdata11.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"type": "string",
@@ -141,6 +141,9 @@
 					"AzureDatabricks1_accessToken": {
 						"value": "[parameters('AzureDatabricks1_accessToken')]"
 					},
+					"AzureDatabricks2_accessToken": {
+						"value": "[parameters('AzureDatabricks2_accessToken')]"
+					},
 					"AzureSqlDatabase_connectionString": {
 						"value": "[parameters('AzureSqlDatabase_connectionString')]"
 					},
@@ -152,9 +155,6 @@
 					},
 					"marketdata_accountKey": {
 						"value": "[parameters('marketdata_accountKey')]"
-					},
-					"AzureDatabricks2_accessToken": {
-						"value": "[parameters('AzureDatabricks2_accessToken')]"
 					},
 					"AmazonS31_properties_typeProperties_accessKeyId": {
 						"value": "[parameters('AmazonS31_properties_typeProperties_accessKeyId')]"
@@ -168,11 +168,11 @@
 					"AzureDatabricks1_properties_typeProperties_existingClusterId": {
 						"value": "[parameters('AzureDatabricks1_properties_typeProperties_existingClusterId')]"
 					},
-					"marketdata_properties_typeProperties_url": {
-						"value": "[parameters('marketdata_properties_typeProperties_url')]"
-					},
 					"AzureDatabricks2_properties_typeProperties_existingClusterId": {
 						"value": "[parameters('AzureDatabricks2_properties_typeProperties_existingClusterId')]"
+					},
+					"marketdata_properties_typeProperties_url": {
+						"value": "[parameters('marketdata_properties_typeProperties_url')]"
 					}
 				}
 			},
