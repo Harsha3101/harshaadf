@@ -1,0 +1,9 @@
+{
+	"name": "capitals-adf-dev",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "4a8d986a-1966-4c39-8c0b-455e2aeef158",
+		"tenantId": "ced8671e-19bf-4f4c-98ee-a688a0c4a6c6"
+	}
+}

@@ -1,0 +1,16 @@
+{
+	"name": "MySqlserver",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "MySql",
+		"typeProperties": {
+			"connectionString": "server=localhost;port=3306;database=hr;user=root;sslmode=1;usesystemtruststore=0",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI5MzE3YWMyNy1jZmNkLTRjNzMtOTNlYS0xM2FhMjljYjMzM2YiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "shir",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

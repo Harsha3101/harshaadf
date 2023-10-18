@@ -1,0 +1,46 @@
+{
+	"name": "config_full_load",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaselokesh",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "lokesh_ds"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "source_db_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "source_schema",
+				"type": "nvarchar"
+			},
+			{
+				"name": "source_tables",
+				"type": "nvarchar"
+			},
+			{
+				"name": "destination_container",
+				"type": "nvarchar"
+			},
+			{
+				"name": "destination_folder",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "on_prim_full"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
