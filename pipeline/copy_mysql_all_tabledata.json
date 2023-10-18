@@ -1,0 +1,178 @@
+{
+	"name": "copy_mysql_all_tabledata",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup_for_allmysql_tables_shiba",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "MySqlSource",
+						"query": {
+							"value": "SELECT\n    TABLE_SCHEMA as SchemaName,\n    TABLE_NAME as TableName\nFROM\n    INFORMATION_SCHEMA.TABLES\nWHERE\n    TABLE_TYPE = 'BASE TABLE'\n    AND TABLE_SCHEMA = 'hr'\n    AND TABLE_NAME IN ('countries', 'departments', 'employees', 'job_history', 'jobs', 'locations', 'regions');\n",
+							"type": "Expression"
+						}
+					},
+					"dataset": {
+						"referenceName": "MySqlTablealltable",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEachalltable",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup_for_allmysql_tables_shiba",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup_for_allmysql_tables_shiba').output.value",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy all data shiba",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "MySqlSource",
+									"query": {
+										"value": "@{concat('select * from ',item().SchemaName,'.',item(). TableName)}",
+										"type": "Expression"
+									}
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobStorageWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".csv"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "MySqlTablealltable",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DelimitedText1",
+									"type": "DatasetReference",
+									"parameters": {
+										"TableName": {
+											"value": "@item().TableName",
+											"type": "Expression"
+										},
+										"SchemaName": {
+											"value": "@item().SchemaName",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			},
+			{
+				"name": "shiba_hr_stagging_to_raw",
+				"description": "It will run as soon as the foreach activity successfully complete. ",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "ForEachalltable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/sksantosh1911@gmail.com/shiba_hr_stagging_to_raw2023-10-17 16:42:00"
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks1",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Shiba_raw_to_InshightLyer_lavel2_transformation",
+				"description": "it will do the level two transformation , and finally pushed code into insight layer",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "shiba_hr_stagging_to_raw",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/sksantosh1911@gmail.com/Shiba_raw_to_InshightLyer_lavel2_transformation2023-10-18 13:44:42"
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks1",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-10-18T09:28:21Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

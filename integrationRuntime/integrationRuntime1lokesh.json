@@ -1,0 +1,6 @@
+{
+	"name": "integrationRuntime1lokesh",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
