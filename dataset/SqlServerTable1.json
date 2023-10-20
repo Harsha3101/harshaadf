@@ -1,0 +1,32 @@
+{
+	"name": "SqlServerTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "harshaSqlServer",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "region_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "region_name",
+				"type": "varchar"
+			},
+			{
+				"name": "inserted_date",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "regions"
+		}
+	}
+}
