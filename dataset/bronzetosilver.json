@@ -1,0 +1,45 @@
+{
+	"name": "bronzetosilver",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "silver"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "WORKER_ID",
+				"type": "INT32"
+			},
+			{
+				"name": "FIRST_NAME",
+				"type": "UTF8"
+			},
+			{
+				"name": "LAST_NAME",
+				"type": "UTF8"
+			},
+			{
+				"name": "SALARY",
+				"type": "INT32"
+			},
+			{
+				"name": "JOINING_DATE",
+				"type": "UTF8"
+			},
+			{
+				"name": "DEPARTMENT",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

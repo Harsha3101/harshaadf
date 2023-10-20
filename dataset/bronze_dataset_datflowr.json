@@ -1,0 +1,71 @@
+{
+	"name": "bronze_dataset_datflowr",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "employees.parquet",
+				"folderPath": "hr/employees",
+				"fileSystem": "bronze"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "employee_id",
+				"type": "INT64"
+			},
+			{
+				"name": "first_name",
+				"type": "UTF8"
+			},
+			{
+				"name": "last_name",
+				"type": "UTF8"
+			},
+			{
+				"name": "email",
+				"type": "UTF8"
+			},
+			{
+				"name": "phone_number",
+				"type": "UTF8"
+			},
+			{
+				"name": "hire_date",
+				"type": "INT96"
+			},
+			{
+				"name": "job_id",
+				"type": "UTF8"
+			},
+			{
+				"name": "salary",
+				"type": "DECIMAL",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "commission_pct",
+				"type": "DECIMAL",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "manager_id",
+				"type": "INT64"
+			},
+			{
+				"name": "department_id",
+				"type": "INT64"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

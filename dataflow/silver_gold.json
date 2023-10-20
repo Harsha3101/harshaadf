@@ -1,0 +1,63 @@
+{
+	"name": "silver_gold",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "silvertogold",
+						"type": "DatasetReference"
+					},
+					"name": "sourcesilver"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "goldlayer",
+						"type": "DatasetReference"
+					},
+					"name": "gold"
+				}
+			],
+			"transformations": [
+				{
+					"name": "rank1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          employee_id as long,",
+				"          first_name as string,",
+				"          last_name as string,",
+				"          email as string,",
+				"          phone_number as string,",
+				"          hire_date as timestamp,",
+				"          job_id as string,",
+				"          salary as decimal(38,18),",
+				"          commission_pct as decimal(38,18),",
+				"          manager_id as long,",
+				"          department_id as long,",
+				"          department_name as string,",
+				"          location_id as long",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> sourcesilver",
+				"sourcesilver rank(desc(department_id, true),",
+				"     output(dense_rank as long),",
+				"     dense: true) ~> rank1",
+				"rank1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> gold"
+			]
+		}
+	}
+}
