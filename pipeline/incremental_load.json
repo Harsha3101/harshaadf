@@ -47,7 +47,7 @@
 					"source": {
 						"type": "SqlServerSource",
 						"sqlReaderQuery": {
-							"value": "select max(inserted_date) as latestwatermark from regions",
+							"value": "select max(@{pipeline().parameters.watermarkcolumn})) as latestwatermark from @{pipeline().parameters.tablename}",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
