@@ -1,0 +1,27 @@
+{
+	"name": "harshaconfigdataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "harshaconfig",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "WaterMarkvalue",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "harsha_watermark"
+		}
+	}
+}
