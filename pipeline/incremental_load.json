@@ -28,7 +28,7 @@
 						"referenceName": "harshaconfigdataset",
 						"type": "DatasetReference"
 					},
-					"firstRowOnly": false
+					"firstRowOnly": true
 				}
 			},
 			{
@@ -47,7 +47,7 @@
 					"source": {
 						"type": "SqlServerSource",
 						"sqlReaderQuery": {
-							"value": "select max(@{pipeline().parameters.watermarkcolumn})) as latestwatermark from @{pipeline().parameters.tablename}",
+							"value": "select max(@{pipeline().parameters.watermarkcolumn}) as latestwatermark from @{pipeline().parameters.tablename}",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -57,7 +57,7 @@
 						"referenceName": "SqlServerTable1",
 						"type": "DatasetReference"
 					},
-					"firstRowOnly": false
+					"firstRowOnly": true
 				}
 			}
 		],
