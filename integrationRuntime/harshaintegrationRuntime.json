@@ -1,0 +1,6 @@
+{
+	"name": "harshaintegrationRuntime",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
