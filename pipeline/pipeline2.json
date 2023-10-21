@@ -148,7 +148,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[usp_write_watermark]",
+					"storedProcedureName": "[dbo].[harsha_usp_write_watermark]",
 					"storedProcedureParameters": {
 						"LastModifiedtime": {
 							"value": {
