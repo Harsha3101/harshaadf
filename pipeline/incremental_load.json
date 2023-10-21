@@ -46,10 +46,6 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
-						"sqlReaderQuery": {
-							"value": "select max(@{pipeline().parameters.watermarkcolumn}) as latestwatermark from @{pipeline().parameters.tablename}",
-							"type": "Expression"
-						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -94,10 +90,6 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
-						"sqlReaderQuery": {
-							"value": "select * from '@{pipeline().parameters.tablename}'",
-							"type": "Expression"
-						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -128,7 +120,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"name": {
-								"value": "@pipeline().parameters.tablename",
+								"value": "@activity('lookup-watermarktable').output.firstRow.TableName",
 								"type": "Expression"
 							}
 						}
