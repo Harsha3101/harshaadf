@@ -1,0 +1,16 @@
+{
+	"name": "harshaSqlServer",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=LAPTOP-U5PNJ67M\\SQLEXPRESS;initial catalog=hr;user id=harsha",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJjYjRkZTViZC1lZGQzLTQ5NGEtOThlOS1lNDU0NjgwMDkzZTkiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "harshaintegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

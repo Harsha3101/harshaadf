@@ -1,0 +1,31 @@
+{
+	"name": "zipfolder_files",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "salesdata.zip",
+				"fileSystem": "raw-edwh"
+			},
+			"columnDelimiter": ",",
+			"compressionCodec": "ZipDeflate",
+			"compressionLevel": "Optimal",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "PK\u0003\u0004\u0014\u0000\u0000\u0000\b\u0000���Q*\u0001��w}\u0003\u00001Z\u0018\u0000\u0014\u0000\u0000\u0000Sales_April_2019.csv�]�n-E\u0010��\u0015#V ]��:�#眗\u0006L\u0010��\u0018\u0010Ouu�\u00013��F\u0002Y�!����P�ԩ�n�����x�����׿}uw�෫�﾿�s��s����￺�^���K�嗯�/��v��wW�^o/|������>A1x�.�|��3/m/}wu���?��t���\u0017�\u0010=��Ÿ�(��f��.\\��\u00147��n���\"R��������[��ГO\\�?Un��x#����o?��/7�w���W_�����׿^��9\u0017�&\u0016���[sy2$��\\�z��o�#D���ϗ�\u00176�L�I\u0015\u001e�嵛�o���/�D\\0F��E\u0018��m\u0012a!o\u001f�r��W�*��_�\u0017~���G���\u0017�ld�C�g����m��\u0001��H��Tkt[��\u001c/OZk�t��R$��i�~Z�u��ycEl������g�����۫�W?���_�T��Ph�-zb�\u000b�z\u001fBH�K�?�]��O�����\u0005m���Dc�n����y/�\u001c��>���o�\u001e�p��\\����\u000b�5v\b��w������M^����/w7�\u0014��^\u0006vU�\u001e[&_v�Ǜ?��\bӃ3�]\u0007�/O&�Ż�fw5���*&>O�<��\u0016��O���������\u0016��K��ҫh��m�^�����\u000b����[�kW?\u0015�������ͭ\b���;\u0005�*\u0017�ʹ���.�y_\u0011��Fsy��E�����ݞr��r��\u000fO\u0017��&�GT\u000f�?o��IJA�|��L$a�?�\u0013b\u0011��no�|��<��m�|y�_�^���������{=3�)�ʨ�\"���o�����k\u0015���\u001f�\u00177�?l/�.���B�޾r�|\u0001\u001cuբgIVMnh������\u0019��̱�4zd�K\u0016׏�Qb�关��r��-0u��*\u0018��\u0000�\u001d��F��\u0018I\u0015�R��\b����2�lG0�@�.rB�f�m�y+b=Y9\u00101�3e\u0013���\u0011U���8ɓ{���o�o�u��9�����\u0004��oJw�͉.���\u001b��ۓ���7��*'�>1h��K��<㘶������\u001f��!ٳ����5M�Q�\u0010����on��/�{\u001fn9\u001a�W�.��xu��W���?o\u001fZΪ\u0019��m�\u00180\u001b����A��F��\u0011��${��}�]Y����!<�w��.G�e\u001b|�?�m\t��%���X",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
