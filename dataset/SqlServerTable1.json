@@ -5,6 +5,11 @@
 			"referenceName": "harshaSqlServer",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"name": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "SqlServerTable",
 		"schema": [
@@ -26,7 +31,10 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "regions"
+			"table": {
+				"value": "@dataset().name",
+				"type": "Expression"
+			}
 		}
 	}
 }
