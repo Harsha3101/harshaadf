@@ -88,7 +88,7 @@
 					"source": {
 						"type": "SqlServerSource",
 						"sqlReaderQuery": {
-							"value": "select * from @{pipeline().parameters.tablename} where inserted_date > '@{activity('lookupconfig').output.firstRow.WaterMarkvalue}' and inserted_date <= '@{activity('Lookupmaxwatermarkcolumn').output.firstRow.maxwatermark}'",
+							"value": "select * from '@{pipeline().parameters.tablename}' where '@{pipeline().parameters.inserted_column}' > '@{activity('lookupconfig').output.firstRow.WaterMarkvalue}' and '@{pipeline().parameters.inserted_column}' <= '@{activity('Lookupmaxwatermarkcolumn').output.firstRow.maxwatermark}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
