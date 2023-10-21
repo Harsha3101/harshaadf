@@ -1,0 +1,36 @@
+{
+	"name": "harshaSqlServerTable3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "harshaSqlServer",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "country_id",
+				"type": "char"
+			},
+			{
+				"name": "country_name",
+				"type": "varchar"
+			},
+			{
+				"name": "region_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "inserted_date",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "countries"
+		}
+	}
+}

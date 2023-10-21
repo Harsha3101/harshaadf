@@ -1,0 +1,14 @@
+{
+	"name": "pipeline2",
+	"properties": {
+		"parameters": {
+			"tablename": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "harsha_pipelines"
+		},
+		"annotations": []
+	}
+}
