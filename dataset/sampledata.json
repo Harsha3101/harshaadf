@@ -13,7 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"folderPath": "regions",
+				"folderPath": "jobs",
 				"container": "harsha"
 			},
 			"columnDelimiter": ",",

@@ -1,0 +1,16 @@
+{
+	"name": "harshaSqlServerTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "harshaSqlServer",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": ""
+		}
+	}
+}
