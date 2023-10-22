@@ -1,0 +1,9 @@
+{
+	"name": "harshaadfrepo",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "4fe2e4cc-b44e-4998-be9b-9b46b5c0ceed",
+		"tenantId": "ced8671e-19bf-4f4c-98ee-a688a0c4a6c6"
+	}
+}
