@@ -1,0 +1,88 @@
+{
+	"name": "DeleteFile",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "shiba-new"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "asin",
+				"type": "String"
+			},
+			{
+				"name": "title",
+				"type": "String"
+			},
+			{
+				"name": "author",
+				"type": "String"
+			},
+			{
+				"name": "soldBy",
+				"type": "String"
+			},
+			{
+				"name": "imgUrl",
+				"type": "String"
+			},
+			{
+				"name": "productURL",
+				"type": "String"
+			},
+			{
+				"name": "stars",
+				"type": "String"
+			},
+			{
+				"name": "reviews",
+				"type": "String"
+			},
+			{
+				"name": "price",
+				"type": "String"
+			},
+			{
+				"name": "isKindleUnlimited",
+				"type": "String"
+			},
+			{
+				"name": "category_id",
+				"type": "String"
+			},
+			{
+				"name": "isBestSeller",
+				"type": "String"
+			},
+			{
+				"name": "isEditorsPick",
+				"type": "String"
+			},
+			{
+				"name": "isGoodReadsChoice",
+				"type": "String"
+			},
+			{
+				"name": "publishedDate",
+				"type": "String"
+			},
+			{
+				"name": "category_name",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

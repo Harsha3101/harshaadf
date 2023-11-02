@@ -1,6 +1,9 @@
 {
 	"name": "silver_gold",
 	"properties": {
+		"folder": {
+			"name": "ramadaaflows"
+		},
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [

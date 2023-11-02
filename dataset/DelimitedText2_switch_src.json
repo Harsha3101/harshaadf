@@ -1,0 +1,64 @@
+{
+	"name": "DelimitedText2_switch_src",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "lokesh_ds"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Canditates2018.csv",
+				"fileSystem": "raw-edwh"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "ConstituencyTitle",
+				"type": "String"
+			},
+			{
+				"name": "CandidateName",
+				"type": "String"
+			},
+			{
+				"name": "PartyAcro",
+				"type": "String"
+			},
+			{
+				"name": "Province",
+				"type": "String"
+			},
+			{
+				"name": "Seat",
+				"type": "String"
+			},
+			{
+				"name": "2013 Seat Number",
+				"type": "String"
+			},
+			{
+				"name": "Distirct",
+				"type": "String"
+			},
+			{
+				"name": "Party",
+				"type": "String"
+			},
+			{
+				"name": "Symbol",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

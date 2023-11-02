@@ -1,0 +1,28 @@
+{
+	"name": "SqlServer_src",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServer1_onprim_warehouse",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"src_tables_para": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "lokesh_ds/stock_agg"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@dataset().src_tables_para",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

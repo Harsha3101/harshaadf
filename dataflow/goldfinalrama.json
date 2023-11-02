@@ -1,6 +1,9 @@
 {
 	"name": "goldfinalrama",
 	"properties": {
+		"folder": {
+			"name": "ramadaaflows"
+		},
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [

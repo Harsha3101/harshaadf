@@ -1,0 +1,27 @@
+{
+	"name": "gold_files_list",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaselokesh",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "folder_names",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "config_get_files"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

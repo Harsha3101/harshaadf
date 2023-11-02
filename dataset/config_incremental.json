@@ -1,0 +1,42 @@
+{
+	"name": "config_incremental",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaselokesh",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "src_container",
+				"type": "nvarchar"
+			},
+			{
+				"name": "src_folder",
+				"type": "nvarchar"
+			},
+			{
+				"name": "src_file",
+				"type": "nvarchar"
+			},
+			{
+				"name": "destination_container",
+				"type": "nvarchar"
+			},
+			{
+				"name": "destination_folder",
+				"type": "nvarchar"
+			},
+			{
+				"name": "destination_file",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "config_incremental"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

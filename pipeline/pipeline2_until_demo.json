@@ -1,0 +1,55 @@
+{
+	"name": "pipeline2_until_demo",
+	"properties": {
+		"activities": [
+			{
+				"name": "Until1",
+				"type": "Until",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(pipeline().parameters.par_color, 'green')",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Set variable1",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "color",
+								"value": {
+									"value": "@pipeline().parameters.par_color",
+									"type": "Expression"
+								}
+							}
+						}
+					],
+					"timeout": "0.00:00:10"
+				}
+			}
+		],
+		"parameters": {
+			"par_color": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"color": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "lokesh_on_prim_raw"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-10-21T17:22:07Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

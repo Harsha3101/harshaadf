@@ -1,0 +1,242 @@
+{
+	"name": "check_and_copy_missied_files",
+	"properties": {
+		"description": "we will check the number of files at raw-edwh and silver-edwh ",
+		"activities": [
+			{
+				"name": "Get Source filenames",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "sales_source",
+						"type": "DatasetReference"
+					},
+					"fieldList": [
+						"childItems"
+					],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
+				}
+			},
+			{
+				"name": "Get Destination files",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "sales_des_silver",
+						"type": "DatasetReference"
+					},
+					"fieldList": [
+						"childItems"
+					],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
+				}
+			},
+			{
+				"name": "count source files",
+				"description": "Get the count of files presented by calculating Length and convert to string use {}",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Get Source filenames",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "sourceFilesCount",
+					"value": {
+						"value": "@{length(activity('Get Source filenames').output.childItems)}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "count destination files",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Get Destination files",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "destinationfilecount",
+					"value": {
+						"value": "@{length(activity('Get Destination files').output.childItems)}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "MissedFiles",
+				"description": "if m-n == 0 then src and des are matched.\n\nif m-n > 0 the src and des are not matched",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "count source files",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "count destination files",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "missiedfilescount",
+					"value": {
+						"value": "@{sub(int(variables('sourceFilesCount')), int(variables('destinationfilecount')) )}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "If Condition1",
+				"description": "if m-n == 0 matched and set wait activity in True\n\nif m-n > 0 in False activity filter out missed one then for loop copy data activity",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "MissedFiles",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(int(variables('missiedfilescount')), 0)",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "Filter1",
+							"description": "get missed file names as output",
+							"type": "Filter",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"items": {
+									"value": "@activity('Get Source filenames').output.childItems",
+									"type": "Expression"
+								},
+								"condition": {
+									"value": "@not(contains(activity('Get Destination files').output.childItems, item()))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Execute Pipeline1",
+							"description": "used to execute the copu_missed_files_part2",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "Filter1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "copy_missed_files_part2",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"missedFileNames": {
+										"value": "@activity('Filter1').output.value",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "Wait1",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
+							}
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"sourceFilesCount": {
+				"type": "String"
+			},
+			"destinationfilecount": {
+				"type": "String"
+			},
+			"missiedfilescount": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "lokesh_on_prim_raw"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-10-21T07:25:48Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

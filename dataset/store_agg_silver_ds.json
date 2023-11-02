@@ -1,0 +1,45 @@
+{
+	"name": "store_agg_silver_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"container_para": {
+				"type": "string"
+			},
+			"folder_para": {
+				"type": "string"
+			},
+			"file_para": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().file_para",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().folder_para",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().container_para",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

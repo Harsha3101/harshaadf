@@ -1,0 +1,62 @@
+{
+	"name": "pipeline2_fail_activity",
+	"properties": {
+		"description": "if the color parameter value not at all present in cases of switch statement the Fail with custom msg",
+		"activities": [
+			{
+				"name": "Switch1",
+				"type": "Switch",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"on": {
+						"value": "@pipeline().parameters.COLOR",
+						"type": "Expression"
+					},
+					"cases": [
+						{
+							"value": "red",
+							"activities": [
+								{
+									"name": "Wait1",
+									"type": "Wait",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 1
+									}
+								}
+							]
+						}
+					],
+					"defaultActivities": [
+						{
+							"name": "Fail1",
+							"type": "Fail",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"message": {
+									"value": "@concat('Invalid Input no such case defined', pipeline().parameters.COLOR)",
+									"type": "Expression"
+								},
+								"errorCode": "101"
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"COLOR": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "lokesh_on_prim_raw"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-10-21T18:05:17Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

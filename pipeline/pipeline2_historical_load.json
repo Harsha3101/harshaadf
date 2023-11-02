@@ -1,0 +1,73 @@
+{
+	"name": "pipeline2_historical_load",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceSqlServer",
+						"type": "DatasetReference",
+						"parameters": {
+							"src_tables": "DimDate",
+							"schema_name": "dbo"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "rawedwhds",
+						"type": "DatasetReference",
+						"parameters": {
+							"folder_name": "Historical",
+							"file_name": "date_data"
+						}
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "lokesh_on_prim_raw"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-10-26T04:44:46Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

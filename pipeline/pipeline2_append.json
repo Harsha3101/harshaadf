@@ -1,0 +1,66 @@
+{
+	"name": "pipeline2_append",
+	"properties": {
+		"activities": [
+			{
+				"name": "Append variable1",
+				"description": "Append value which is going to specify in this activity to the output varible. here int is used to convert the passing value from string to int ",
+				"type": "AppendVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "marks",
+					"value": {
+						"value": "@int(90)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set variable1",
+				"description": "now after getting the value from Append Variable . need to assign that value to output varaible",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Append variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "output",
+					"value": {
+						"value": "@variables('marks')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"marks": {
+				"type": "Array",
+				"defaultValue": [
+					85,
+					48,
+					79,
+					96
+				]
+			},
+			"output": {
+				"type": "Array"
+			}
+		},
+		"folder": {
+			"name": "lokesh_on_prim_raw"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-10-22T02:15:02Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

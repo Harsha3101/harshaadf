@@ -1,0 +1,30 @@
+{
+	"name": "excel_config",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaselokesh",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "filename",
+				"type": "varchar"
+			},
+			{
+				"name": "sheetName",
+				"type": "varchar"
+			},
+			{
+				"name": "destination_container",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "excel_config"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,90 @@
+{
+	"name": "pipeline2_append_varaible_2",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"description": "pass the value for the cityName varible ",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "cityname",
+					"value": "mumbai"
+				}
+			},
+			{
+				"name": "Append variable1",
+				"description": "adding the cityName variable value to listofcities",
+				"type": "AppendVariable",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "listofcities",
+					"value": {
+						"value": "@variables('cityname')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set variable2",
+				"description": "get the value which is appended and assign to cityappened list",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Append variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "appendedcities",
+					"value": {
+						"value": "@variables('listofcities')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"cityname": {
+				"type": "String"
+			},
+			"listofcities": {
+				"type": "Array",
+				"defaultValue": [
+					"Hyd",
+					"Bglr",
+					"chennai"
+				]
+			},
+			"appendedcities": {
+				"type": "Array"
+			}
+		},
+		"folder": {
+			"name": "lokesh_on_prim_raw"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-10-22T02:28:13Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

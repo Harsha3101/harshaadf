@@ -1,5 +1,5 @@
 {
-	"name": "bronzeramadataflow",
+	"name": "sqldataflow",
 	"properties": {
 		"activities": [
 			{
@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "rama_dataflow",
+						"referenceName": "sqltostorage using join",
 						"type": "DataFlowReference"
 					},
 					"compute": {

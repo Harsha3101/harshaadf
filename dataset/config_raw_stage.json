@@ -1,0 +1,50 @@
+{
+	"name": "config_raw_stage",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaselokesh",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "lokesh_ds/stock_agg"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "src_container",
+				"type": "nvarchar"
+			},
+			{
+				"name": "src_folder",
+				"type": "nvarchar"
+			},
+			{
+				"name": "src_filename",
+				"type": "nvarchar"
+			},
+			{
+				"name": "destination_container",
+				"type": "nvarchar"
+			},
+			{
+				"name": "destination_folder",
+				"type": "nvarchar"
+			},
+			{
+				"name": "destination_file",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "config_raw_stg"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

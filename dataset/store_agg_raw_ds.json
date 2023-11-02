@@ -1,0 +1,85 @@
+{
+	"name": "store_agg_raw_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"destination_con_para": {
+				"type": "string"
+			},
+			"destination_folder_para": {
+				"type": "string"
+			},
+			"destination_file_para": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "lokesh_ds/stock_agg"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().destination_file_para",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().destination_folder_para",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().destination_con_para",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "origin_code",
+				"type": "String"
+			},
+			{
+				"name": "origin_airport",
+				"type": "String"
+			},
+			{
+				"name": "origin_city",
+				"type": "String"
+			},
+			{
+				"name": "origin_state",
+				"type": "String"
+			},
+			{
+				"name": "dest_code",
+				"type": "String"
+			},
+			{
+				"name": "dest_airport",
+				"type": "String"
+			},
+			{
+				"name": "dest_city",
+				"type": "String"
+			},
+			{
+				"name": "dest_state",
+				"type": "String"
+			},
+			{
+				"name": "count",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

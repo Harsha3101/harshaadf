@@ -1,0 +1,102 @@
+{
+	"name": "pipeline2_validation_activity",
+	"properties": {
+		"activities": [
+			{
+				"name": "Validation1",
+				"description": "Validate either folder exists are not in the container. until the folder exists it won't execute another task",
+				"type": "Validation",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "validate_activity_src",
+						"type": "DatasetReference",
+						"parameters": {
+							"directory": {
+								"value": "@pipeline().parameters.directory_para",
+								"type": "Expression"
+							}
+						}
+					},
+					"timeout": "0.12:00:00",
+					"sleep": 10
+				}
+			},
+			{
+				"name": "Validation2",
+				"description": "Once after folder validation check has been completed. No check for files presented in that folder. Here use True",
+				"type": "Validation",
+				"dependsOn": [
+					{
+						"activity": "Validation1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [
+					{
+						"name": "file_type",
+						"value": "csv"
+					}
+				],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "validate_activity_src",
+						"type": "DatasetReference",
+						"parameters": {
+							"directory": {
+								"value": "@pipeline().parameters.directory_para",
+								"type": "Expression"
+							}
+						}
+					},
+					"timeout": "0.12:00:00",
+					"sleep": 10,
+					"childItems": true
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Validation2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "filename_vara",
+					"value": {
+						"value": "@activity('Validation2').output.childItems[0].name",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"directory_para": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"filename_vara": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "lokesh_on_prim_raw"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-10-22T01:52:26Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -27,8 +27,11 @@
 				}
 			}
 		],
+		"folder": {
+			"name": "rama_pipelines"
+		},
 		"annotations": [],
-		"lastPublishTime": "2023-10-18T10:22:09Z"
+		"lastPublishTime": "2023-11-01T05:57:18Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

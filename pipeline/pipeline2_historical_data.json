@@ -1,10 +1,10 @@
 {
-	"name": "bronzeramadataflow",
+	"name": "pipeline2_historical_data",
 	"properties": {
 		"activities": [
 			{
-				"name": "Data flow1",
-				"type": "ExecuteDataFlow",
+				"name": "Lookup1",
+				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -15,23 +15,24 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"dataflow": {
-						"referenceName": "rama_dataflow",
-						"type": "DataFlowReference"
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
 					},
-					"compute": {
-						"coreCount": 8,
-						"computeType": "General"
+					"dataset": {
+						"referenceName": "historical_config",
+						"type": "DatasetReference"
 					},
-					"traceLevel": "Fine"
+					"firstRowOnly": false
 				}
 			}
 		],
 		"folder": {
-			"name": "rama_pipelines"
+			"name": "lokesh_on_prim_raw"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-11-01T05:57:18Z"
+		"lastPublishTime": "2023-10-27T06:32:43Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

@@ -1,0 +1,46 @@
+{
+	"name": "historical_config",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaselokesh",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "lokesh_ds"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "src_tables",
+				"type": "nvarchar"
+			},
+			{
+				"name": "destination_cont",
+				"type": "nvarchar"
+			},
+			{
+				"name": "destination_folder",
+				"type": "nvarchar"
+			},
+			{
+				"name": "destination_file_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "date_col",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "historical_config"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
